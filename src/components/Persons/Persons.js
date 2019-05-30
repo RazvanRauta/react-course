@@ -7,15 +7,45 @@
 import React from 'react';
 import Person from "./Person/Person";
 
-// {/*Foreach persons as person*/}
-const persons = (props) => props.persons.map((person, index) => {
-        return <Person
-            name={person.name}
-            age={person.age}
-            click={() => props.clicked(index)}
-            key={person.id}
-            changed={(event) => props.changed(event, person.id)}/>
-    }
-);
+class Persons extends React.Component {
 
-export default persons;
+    static mapPropsToState(props, state){
+
+        return state;
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+    }
+
+    componentWillUnmount() {
+        console.log('[Persons.js] component will unmount')
+    }
+
+    render() {
+
+        // {/*Foreach persons as person*/}
+        return this.props.persons.map((person, index) => {
+            return (<Person
+                    name={person.name}
+                    age={person.age}
+                    click={() => this.props.clicked(index)}
+                    key={person.id}
+                    changed={(event) => this.props.changed(event, person.id)}/>
+            );
+        });
+    }
+}
+
+
+export default Persons;

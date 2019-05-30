@@ -4,10 +4,21 @@
  * Time: 15:46
 */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import cssClasses from './Cockpit.css';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+
+    useEffect( () => {
+
+        console.log('[Cockpit.js] useEffect')
+
+        setTimeout(() => {
+            alert('Saved data to cloud');
+        }, 1000);
+
+        }, []
+    );
 
     const classes = [];
     let btnClass='';
@@ -37,4 +48,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default Cockpit;

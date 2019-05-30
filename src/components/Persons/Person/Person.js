@@ -4,19 +4,21 @@
  * Time: 11:59
 */
 import React from 'react';
-import classesCSS from './Person.css';
 
 
-const person = (props) => {
+class Person extends React.Component {
 
+    render() {
+        return (
+            <React.Fragment>
+                <p key="p3" onClick={this.props.click}> I'm {this.props.name} and I am {this.props.age} old</p>
+                <p key="p1">{this.props.children}</p>
+                <input key="p2" type="text" onChange={this.props.changed} value={this.props.name}/>
+            </React.Fragment>
+        )
 
-    return (
-        <div className={classesCSS.Person}>
-            <p onClick={props.click} > I'm {props.name} and I am {props.age} old</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name}/>
-        </div>
-    )
-};
+    }
 
-export default person;
+}
+
+export default Person;

@@ -20,17 +20,22 @@ class App extends React.Component {
                 {id: '3', name: 'Marcela', age: '25'}
             ],
             otherState: 'some other value',
-            showPersons: false
+            showPersons: false,
+            showCockpit: true
         };
     }
 
-    static getDerivedStateFromProps(props, state){
-
-        return state;
-    }
+    // static getDerivedStateFromProps(props, state){
+    //
+    //     return state;
+    // }
 
 
     componentDidMount() {
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
 
     }
 
@@ -89,10 +94,15 @@ class App extends React.Component {
         return (
 
             <div className={classesCSS.App}>
-                <Cockpit title={this.props.appTitle}
-                         showPersons={this.state.showPersons}
-                         persons={this.state.persons}
-                         clicked={this.togglePersonsHandler}/>
+                <button onClick={() => {
+                    this.setState({showCockpit: false});
+                }}>Remove Cockpit
+                </button>
+                {this.state.showCockpit ? <Cockpit title={this.props.appTitle}
+                                                   showPersons={this.state.showPersons}
+                                                   persons={this.state.persons}
+                                                   clicked={this.togglePersonsHandler}/>
+                    : <p>Nothing to show</p>}
                 {persons}
 
             </div>
